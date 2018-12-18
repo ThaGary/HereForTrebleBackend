@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 app.get('/users', (req, res) => {
     queries.getAllUsers().then(users => res.json(users))
 })
-app.get('/artist', (req, res) => {
+app.get('/artists', (req, res) => {
     queries.getAllArtist().then(artists => res.json(artists))
 })
 app.get('/joins', (req, res) => {
