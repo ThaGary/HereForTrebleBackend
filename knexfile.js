@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgresql://localhost/<db_name>'
+    connection: 'postgresql://localhost/herefortreble'
   },
   production: {
     client: 'pg',
