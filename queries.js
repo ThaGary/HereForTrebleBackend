@@ -19,20 +19,24 @@ module.exports = {
             .where('id', id)
             .first()
     },
-    getJoinsById(id) {
-        return db('user_music')
-            .where('id', id)
-            .first()
+    getJoinsByUserId(id) {
+        return db('user_music').where('user_id', id).innerJoin('music', 'user_music.music_id', 'music.id').innerJoin('users', 'user_music.user_id', 'users.id')
     },
     createUser(newUser) {
         return db('users')
             .insert(newUser)
             .returning('*')
     },
-    createArtist(newArtist) {
-        return db('music')
-            .insert(newArtist)
-            .returning('*')
+    createArtist(newArtist){
+        return db('music').select()
+            .where('artist_name', newArtist.artist_name)
+            .then((artist) => {
+                if (artist.length===0) {
+                    return db('music').insert(newArtist)
+                } else {
+                    return artist
+                }
+            })
     },
     createJoin(newJoin) {
         return db('user_music')

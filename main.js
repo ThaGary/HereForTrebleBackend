@@ -28,7 +28,7 @@ app.get('/artists/:id', (req, res) => {
     queries.getArtistsById(req.params.id).then(artist => res.status(200).send(artist))
 })
 app.get('/joins/:id', (req, res) => {
-    queries.getJoinsById(req.params.id).then(user_music => res.status(200).send(user_music))
+    queries.getJoinsByUserId(req.params.id).then(user_music => res.status(200).send(user_music))
 })
 app.post('/users', (req, res) => {
     queries.createUser(req.body).then(user => res.json(user))
