@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
          music.increments('id')
          music.string('artist_name')
          music.string('artist_img')
+         music.string('spotify_id')
     });
 };
 

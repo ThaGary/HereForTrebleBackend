@@ -49,5 +49,4 @@ app.delete('/joins/:id', (req, res) => {
     queries.deleteJoin(req.params.id).then(res.sendStatus(204))
 })
 
-
 app.listen(port)
