@@ -4,6 +4,7 @@ exports.up = function(knex, Promise) {
          music.string('artist_name')
          music.string('artist_img')
          music.string('spotify_id')
+         music.unique('spotify_id')
     });
 };
 
