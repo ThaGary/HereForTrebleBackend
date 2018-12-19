@@ -20,7 +20,7 @@ module.exports = {
             .first()
     },
     getJoinsByUserId(id) {
-        return db('user_music').where('user_id', id).innerJoin('music', 'user_music.music_id', 'music.id').innerJoin('users', 'user_music.user_id', 'users.id')
+        return db('user_music').where('user_id', id).innerJoin('music', 'user_music.spotify_id', 'music.spotify_id').innerJoin('users', 'user_music.user_id', 'users.id')
     },
     createUser(newUser) {
         return db('users')
