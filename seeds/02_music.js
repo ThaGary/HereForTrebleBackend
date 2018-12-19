@@ -23,7 +23,7 @@ exports.seed = function(knex, Promise) {
         {
           artist_name: 'Aesop Rock',
           artist_img: 'https://i.scdn.co/image/d190e645f63fb0430299aa85600afeeb432130e0',
-          spotify: '2fSaE6BXtQy0x7R7v9IOmZ'
+          spotify_id: '2fSaE6BXtQy0x7R7v9IOmZ'
         },
         {
           artist_name: 'Stevie Wonder',
