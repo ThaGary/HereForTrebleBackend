@@ -64,7 +64,9 @@ app.get('/match', (req, res) => {
                 if (info.user_id !== Number(currentUserId)) {
                     newArr.push({
                         "id": info.user_id,
-                        "spotify_id": [info.spotify_id]
+                        "spotify_id": [info.spotify_id],
+                        "avatar": info.avatar,
+                        "first_name": info.first_name
                     })
                 }
             })
@@ -105,10 +107,14 @@ app.get('/match', (req, res) => {
             const result = output.map((person) => {
                 let winner = {
                     id: '',
-                    percentage: 0
+                    percentage: 0,
+                    avatar: '',
+                    first_name: ''
                 };
                 winner['id'] = person.id;
                 winner['percentage'] = person.percentage;
+                winner['avatar'] = person.avatar;
+                winner['first_name'] = person.first_name;
                 return winner;
             });
         
