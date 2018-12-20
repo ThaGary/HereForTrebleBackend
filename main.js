@@ -49,5 +49,49 @@ app.delete('/users/:id', (req, res) => {
 app.delete('/joins/:id', (req, res) => {
     queries.deleteJoin(req.params.id).then(res.sendStatus(204))
 })
+app.get('/match', (req, res) => {
+    queries.getAllJoins().then(allJoinUserInfo => {
+        var currentUserId = req.query.user_id
+        queries.getJoinsByUserId(currentUserId).then(currentUserInfo => {
+            var currentUserFavArtist = []
+            currentUserInfo.forEach(function (info) {
+                currentUserFavArtist.push(info.spotify_id);
+            }); 
+            // console.log(currentUserFavArtist)
+
+            // allJoinUserInfo.map(info => {
+            //     if (info.user_id !== Number(currentUserId)) {
+            //         // console.log(info);
+            //         var obj = {}
+            //         for (var i = 1; i <= 4; i++) {
+            //             info.map(user => {
+            //                 if (user.user_id === i) {
+            //                     console.log(user.user_id)
+            //                 }
+            //             })
+            //         }
+            //         console.log(arr);
+            //     }
+            // })
+
+            //allJoinUserInfo.map(function (info) {
+                
+                // var arr = info
+                // if (info.user_id !== Number(currentUserId)) {
+                //     // console.log(info);
+                //     var obj = {}
+                //     for (var i = 1; i <= 4; i++) {
+                //         arr.map(user => {
+                //             if (user.user_id === i) {
+                                
+                //             }
+                //         })
+                //     }
+                //     console.log(arr);
+                // }
+            //})
+        })
+    })
+})
 
 app.listen(port)

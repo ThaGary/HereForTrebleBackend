@@ -7,7 +7,7 @@ module.exports = {
         return db('music')
     },
     getAllJoins() {
-        return db('user_music')
+        return db('user_music').innerJoin('music', 'user_music.spotify_id', 'music.spotify_id').innerJoin('users', 'user_music.user_id', 'users.id')
     },
     getUsersById(id) {
         return db('users')
