@@ -57,39 +57,63 @@ app.get('/match', (req, res) => {
             currentUserInfo.forEach(function (info) {
                 currentUserFavArtist.push(info.spotify_id);
             }); 
-            // console.log(currentUserFavArtist)
 
-            // allJoinUserInfo.map(info => {
-            //     if (info.user_id !== Number(currentUserId)) {
-            //         // console.log(info);
-            //         var obj = {}
-            //         for (var i = 1; i <= 4; i++) {
-            //             info.map(user => {
-            //                 if (user.user_id === i) {
-            //                     console.log(user.user_id)
-            //                 }
-            //             })
-            //         }
-            //         console.log(arr);
-            //     }
-            // })
+            let newArr = [];
 
-            //allJoinUserInfo.map(function (info) {
-                
-                // var arr = info
-                // if (info.user_id !== Number(currentUserId)) {
-                //     // console.log(info);
-                //     var obj = {}
-                //     for (var i = 1; i <= 4; i++) {
-                //         arr.map(user => {
-                //             if (user.user_id === i) {
-                                
-                //             }
-                //         })
-                //     }
-                //     console.log(arr);
-                // }
-            //})
+            allJoinUserInfo.map(function(info) {
+                if (info.user_id !== Number(currentUserId)) {
+                    newArr.push({
+                        "id": info.user_id,
+                        "spotify_id": [info.spotify_id]
+                    })
+                }
+            })
+
+            var output = [];
+
+            newArr.forEach(function(item) {
+                var existing = output.filter(function(v, i) {
+                    return v.id == item.id;
+                });
+                if (existing.length) {
+                    var existingIndex = output.indexOf(existing[0]);
+                    output[existingIndex].spotify_id = output[existingIndex].spotify_id.concat(item.spotify_id);
+                } else {
+                    if (typeof item.spotify_id == 'string')
+                    item.spotify_id = [item.spotify_id];
+                    output.push(item);
+                }
+            });
+
+            function compare(arr1, arr2) {
+                const finalArray = [];
+                arr1.forEach((e1)=>arr2.forEach((e2)=>
+                    {
+                        if(e1 === e2) {
+                            finalArray.push(e1)
+                        }
+                    }
+                ));
+                return (finalArray.length/arr1.length)*100;
+            }
+
+            output.forEach((person) => {
+                const percentage = compare(currentUserFavArtist, person.spotify_id)
+                person["percentage"] = percentage;
+            })
+
+            const result = output.map((person) => {
+                let winner = {
+                    id: '',
+                    percentage: 0
+                };
+                winner['id'] = person.id;
+                winner['percentage'] = person.percentage;
+                return winner;
+            });
+        
+            res.send(result);
+            
         })
     })
 })
