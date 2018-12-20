@@ -32,6 +32,7 @@ app.get('/joins/:id', (req, res) => {
 })
 app.post('/users', (req, res) => {
     queries.createUser(req.body).then(user => res.json(user))
+    console.log(req.body);
 })
 app.post('/artists', (req, res) => {
     queries.createArtist(req.body).then(artist => res.json(artist))
