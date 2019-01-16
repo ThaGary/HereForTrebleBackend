@@ -16,6 +16,6 @@
 * Home Page:
 ![alt text](https://i.imgur.com/L983ehu.gif)
 * Profile Page:
-![alt text](https://i.imgur.com/yZdvmDd.jpg)
+![alt text](https://i.imgur.com/yZdvmDd.jpg?2)
 * Match Page:
-![alt text](https://i.imgur.com/kZBCIIw.jpg)
+![alt text](https://i.imgur.com/kZBCIIw.jpg?3)
